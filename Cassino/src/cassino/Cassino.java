@@ -21,7 +21,7 @@ public class Cassino {
             {
                 String nome, login, senha, confirm; 
                 
-                nome = JOptionPane.showInputDialog("Digite seu nome:");
+                nome = JOptionPane.showInputDialog("Digite seu nome: ");
                 login = JOptionPane.showInputDialog("Digite seu login:");
                 senha = JOptionPane.showInputDialog("Digite sua senha:");
                 confirm = JOptionPane.showInputDialog("Digite novamente sua senha para confirmação:");
