@@ -7,17 +7,24 @@ public class Cassino {
         
         Cadastro play = new Cadastro ();
         Jogos batatinha = new Jogos ();
-        String opcao;
+        int opcao;
+        String mostranome;
         do {
-            
-           JOptionPane.showMessageDialog(null,"Cassino:\n1. Realizar Cadastro\n2. Entrar\n3. Inserir cash\n4. Comprar roupa\n5.Comprar acessórios"
-                   + "\n6.Comprar sapatos\n7. Mostrar cash\n8.Mostrar roupas em geral\n9. Sair\n10. Jogo de Dados\n11.Jogo da Roleta");
+            if (play.logado())
+            {
+                mostranome = play.getNome();
+            }
+            else
+            {
+                mostranome = "";
+            }
+         opcao = Integer.parseInt(JOptionPane.showInputDialog("Cassino:\nBem vindo " + mostranome + "\n1. Realizar Cadastro\n2. Entrar\n3. Inserir cash\n4. Comprar roupa\n5.Comprar acessórios"
+                   + "\n6.Comprar sapatos\n7. Mostrar cash\n8.Mostrar roupas em geral\n9. Sair\n10. Jogo de Dados\n11.Jogo da Roleta"));
 
-        opcao = JOptionPane.showInputDialog("Digite sua opção:");
        
            switch (opcao)
         {
-            case "1" : 
+            case 1 : 
             {
                 String nome, login, senha, confirm; 
                 
@@ -28,17 +35,24 @@ public class Cassino {
                 play.realizarCadastro(nome, login, senha, confirm);
                 break;
             }
-            case "2" :
+            case 2 :
             {
                 String login23, senha1;
                 login23 = JOptionPane.showInputDialog("Digite seu login:");
                 senha1 = JOptionPane.showInputDialog("Digite sua senha:");
-                play.entrar(login23, senha1);
+                if (play.entrar(login23, senha1))
+                {
+                    JOptionPane.showMessageDialog(null,"Bem-vindo "+play.getNome()+". Você está logado!");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Login ou senha invalidos! Tente novamente!");
+                }
                 break;
                 
             }
             
-            case "3" :
+            case 3 :
             {
                 String cartao;
                 Double dinheiro;
@@ -46,8 +60,8 @@ public class Cassino {
                 dinheiro = Double.parseDouble(JOptionPane.showInputDialog("Entre com o dinheiro:"));
                 play.inserirCash(cartao, dinheiro);
                 break;
-            }
-            case "4" :
+            } 
+            case 4 :
             {
                 String op;
                 JOptionPane.showMessageDialog(null,"Escolha o item que deseja comprar\n1.Terno\n2.Smoking\n3.Vestido Rosa\n4.Tubindo dourado\n");
@@ -56,7 +70,7 @@ public class Cassino {
                 break;
            }
            
-            case "5" :
+            case 5 :
             {
                 String op2;
                 JOptionPane.showMessageDialog(null,"Escolha o item que deseja comprar\n1.Pulseira\n2.Tiara\n3.Brinco Rosa\n4.Colar\n");
@@ -64,7 +78,7 @@ public class Cassino {
                 play.comprarAcessorio(op2);
                 break;
             }
-            case "6" :
+            case 6 :
             {
                 String op4;
                 JOptionPane.showMessageDialog(null,"Escolha o item que deseja comprar\n1.Tênis\n2.Botas\n3.All Stars\n4.Crocs\n");
@@ -72,22 +86,22 @@ public class Cassino {
                 play.comprarSapato(op4);
                 break;
             }
-            case "7" :
+            case 7 :
             {
                 JOptionPane.showMessageDialog(null,"Seu cash é no total de:" + play.getCash());
                 break;
             }
-            case "8" :
+            case 8 :
             {
                 JOptionPane.showMessageDialog(null,"Roupas:\n" + play.getRoupa() + "\nAcessórios:\n" + play.getAcessorio() + "Sapatos:\n" + play.getSapato());
                 break;
             }
-            case "9" :
+            case 9 :
             {
                 JOptionPane.showMessageDialog(null,"Até mais. Volte sempre.");
                 break;
             }
-            case "10" :
+            case 10 :
             {
                 int batata;
                 double dinheiro1;
@@ -99,7 +113,7 @@ public class Cassino {
                
                 break;
             }
-            case "11" :
+            case 11 :
             {
                 int sl;
                 JOptionPane.showMessageDialog(null,"1.\n0-36 Números Únicos – Você pode apostar em " +
@@ -174,6 +188,6 @@ public class Cassino {
            
            
            }
-       }while(!"9".equals(opcao));
+       }while(opcao != 9);
        }
 }

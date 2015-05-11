@@ -4,8 +4,8 @@ public class Cadastro {
         private String nome;
         private String login;
         private String senha;
-        private Double cash;
-        private Double gold;
+        private double cash;
+        private double gold;
         private boolean jogando;
         private String roupa;
         private String acessorio;
@@ -41,11 +41,11 @@ public class Cadastro {
             return this.senha;
         }
         
-        public Double getCash ()
+        public double getCash ()
         {
             return this.cash;
         }
-        public Double getGold ()
+        public double getGold ()
         {
             return this.gold;
         }
@@ -129,8 +129,13 @@ public class Cadastro {
             {
                 return false;
             }
-       }
-        
+        }
+
+        boolean logado () 
+        {
+            return jogando;
+        }
+
         boolean inserirCash (String cartao, Double reais)
         {
            if (jogando == true )
